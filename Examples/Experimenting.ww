@@ -1,0 +1,87 @@
+// Function declaration
+{:sum list:[Int] -> Int
+    // Variable declaration
+    :sum = 0
+    
+    // For loop
+    {@ :e <- list
+        sum += e
+    }
+
+    // Return statement
+    -> sum
+}
+
+// Top level code, no main function
+// Function calling
+:a = {sum list:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+{print "The sum of 1 to 10 is \(a)"}
+
+// If, else if, else statement
+{? a == 55
+    {print "It looks like it was correct!"}
+ ? a == 54 || a == 56
+    {print "It was pretty close."}
+ ?
+    {print "It wasn't right..."}
+}
+
+// Loops
+// For
+{@ :i <- [0..5]
+    {print "i is \(i)"}
+}
+
+// While
+:i = 0
+{@? i < 5
+    {print "i is \(i)"}
+    i += 1
+}
+
+// Both of these loop examples would print
+// i is 0
+// i is 1
+// i is 2
+// i is 3
+// i is 4
+
+////////////////////////////////////////////////
+
+// A short but complete program
+// FizzBuzz
+
+{:fizzBuzz num:Int -> String
+    {? num % 15 == 0
+        -> "FizzBuzz"
+     ? num % 5 == 0
+        -> "Buzz"
+     ? num % 3 == 0
+        -> "Fizz"
+     ?
+        -> "\(num)"
+    }
+}
+
+{@ :i <- [0...100]
+    {print {fizzBuzz num:i}}
+}
+
+// Prints
+// 1
+// 2
+// Fizz
+// 4
+// Buzz
+// 6
+// 7
+// ...
+// 14
+// FizzBuzz
+// 16
+// 17
+// Fizz
+// ...
+// 98
+// Fizz
+// Buzz
