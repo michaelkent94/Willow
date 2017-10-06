@@ -10,14 +10,14 @@ public class WillowCore {
 
     public func run() throws {
         // Collect and verify the arguments
-        let flags = Flags(arguments: arguments)
-        if flags.help {
+        let args = Args(arguments: arguments)
+        if args.help {
             Log.write(help)
             exit(Exit.success)
-        } else if flags.version {
+        } else if args.version {
             Log.write(version)
             exit(Exit.success)
-        } else if !flags.valid {
+        } else if !args.valid {
             Log.error(usage)
             exit(Exit.failure)
         }
@@ -25,7 +25,7 @@ public class WillowCore {
         let lexer = Lexer()
 
         do {
-            let expanded = NSString(string: flags.inputFile).expandingTildeInPath
+            let expanded = NSString(string: args.inputFile).expandingTildeInPath
             let file = try File(path: expanded, using: FileManager.default).readAsString()
             let tokens = try lexer.tokenize(file)
 

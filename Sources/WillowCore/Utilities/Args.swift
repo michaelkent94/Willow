@@ -1,6 +1,6 @@
 import Foundation
 
-struct Flags {
+struct Args {
     private(set) var help = false
     private(set) var version = false
 

@@ -11,7 +11,7 @@ public class Lexer {
         var tokens = [Token]()
         var lineNumber = 1
         var columnNumber = 1
-
+        
         while !remaining.isEmpty {
             var line = remaining
             if let newlineIndex = remaining.index(of: "\n") {
