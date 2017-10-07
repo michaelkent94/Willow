@@ -33,7 +33,7 @@ public class Lexer {
             }
         }
 
-        return tokens
+        return combineWhitespace(tokens)
     }
 
     private func consume(_ line: String) -> (result: Token, consumed: Int)? {
@@ -61,5 +61,19 @@ public class Lexer {
         }
 
         return nil
+    }
+
+    private func combineWhitespace(_ tokens: [Token]) -> [Token] {
+        return tokens.reduce([]) { (reduced: [Token], next: Token) -> [Token] in
+            var reduced = reduced
+            if let last = reduced.last, last.kind == .whitespace {
+                _ = reduced.popLast()
+                let combined = Token(kind: .whitespace, value: last.value + next.value)
+                reduced.append(combined)
+            } else {
+                reduced.append(next)
+            }
+            return reduced
+        }
     }
 }
