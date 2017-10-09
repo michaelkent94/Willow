@@ -32,7 +32,7 @@ public class WillowCore {
             // Create the output file
             let outputFile = try FileSystem().createFile(at: expanded.dropLast(3) + ".willowout")
 
-            let output = tokens.reduce("") { $0 + $1.value }
+            let output = tokens.reduce("") { $0 + $1.description }
             try outputFile.write(string: output)
         } catch let error {
             Log.error(error)

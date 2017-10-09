@@ -66,7 +66,10 @@ public class Lexer {
     private func combineWhitespace(_ tokens: [Token]) -> [Token] {
         return tokens.reduce([]) { (reduced: [Token], next: Token) -> [Token] in
             var reduced = reduced
-            if let last = reduced.last, last.kind == .whitespace {
+            if next.kind == .whitespace,
+               let last = reduced.last,
+               last.kind == .whitespace {
+                
                 _ = reduced.popLast()
                 let combined = Token(kind: .whitespace, value: last.value + next.value)
                 reduced.append(combined)
